@@ -1,0 +1,52 @@
+<div>
+  <h1>Task Management</h1>
+  <form class="input-group" [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-auto">
+        <label>Name</label>
+        <input [formControl]="nameControl" class="form-control">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-auto">
+        <label>Description</label>
+        <textarea [formControl]="descriptionControl" class="form-control">
+      </textarea>
+      </div>
+    </div>
+  </form>
+  <ng-container *ngIf="!this.selectedId">
+    <button (click)="addTasks()" class="btn btn-primary">Add</button>
+  </ng-container>
+  <ng-container *ngIf="this.selectedId">
+    <button (click)="updateTasks()" class="btn btn-primary">Update</button>
+    <button (click)="reset()" class="btn btn-info">Clear</button>
+  </ng-container>
+
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngIf="(tasks$ | async)?.length == 0">
+      <tr>
+        <td colspan="3">No Data available</td>
+      </tr>
+    </ng-container>
+    <ng-container *ngFor="let t of tasks$ | async">
+      <tr>
+        <td>{{ t.name }}</td>
+        <td>{{ t.description }}</td>
+        <td>
+          <button (click)="editTask(t)" class="btn btn-primary">Edit</button>
+          <button (click)="removeTasks(t.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

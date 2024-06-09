@@ -1,0 +1,12 @@
+<div>
+  Task Count in Parent: {{(tasks$ | async)?.length}}
+</div>
+<div class="row">
+  <div class="col-auto">
+    <button (click)="goToTask()">Tasks</button>
+  </div>
+  <div class="col-auto">
+    <button (click)="goToMaps()">Maps</button>
+  </div>
+</div>
+<router-outlet></router-outlet>
