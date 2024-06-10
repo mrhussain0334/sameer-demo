@@ -17,6 +17,11 @@ const routes: Routes = [{
       pathMatch: 'full'
     },
     {
+      path: 'grok-ai',
+      loadChildren: () => import('./grok-ai/grok-ai-routing.module').then(p => p.GrokAiRoutingModule),
+      pathMatch: 'full'
+    },
+    {
       path: '',
       redirectTo: 'tasks',
       pathMatch: 'full'

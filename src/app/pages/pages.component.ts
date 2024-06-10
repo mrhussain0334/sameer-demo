@@ -28,4 +28,8 @@ export class PagesComponent implements OnInit {
   goToMaps() {
     this.router.navigateByUrl('maps');
   }
+
+  goToGrokAi() {
+    this.router.navigateByUrl('grok-ai');
+  }
 }

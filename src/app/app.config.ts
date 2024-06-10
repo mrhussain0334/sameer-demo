@@ -5,6 +5,9 @@ import {routes} from './app.routes';
 import {provideState, provideStore} from "@ngrx/store";
 import {taskReducer} from "./states/task/task.reducer";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
+import {grokAiReducer} from "./states/grokai/grokai.reducer";
+import {provideEffects} from "@ngrx/effects";
+import {GrokaiEffect} from "./states/grokai/grokai.effect";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,6 +15,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore(),
     provideState({name: 'task', reducer: taskReducer}),
+    provideState({name: 'grokAi', reducer: grokAiReducer}),
+    provideEffects(GrokaiEffect),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode

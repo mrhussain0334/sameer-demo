@@ -1,27 +1,33 @@
-# Demo
+# How to build this project
+First you need to create a project in angular (use the LTS version)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8.
+Once the project is created lets install the following packages
+```bash
+ng add @ngrx/store@latest
+ng add @ngrx/effects@latest
+ng add @ngrx/store-devtools
+npm i axos
+npm i @arcgis/core
+```
 
-## Development server
+After installing the above lets move on to creating our first TASK CRUD via NGRX
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Ngrx
+Ngrx is use for global state management which allows the developer to share data with other components with ease
 
-## Code scaffolding
+Lets start with creating a component first called Task Management
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+src/app/pages/task/components/task-management
+```
 
-## Build
+After creating a component lets start by creating an Action
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+An Action is used with interacting with the Store
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+export const addTask = createAction('[Task Management Component] Add Task', props<{task: TaskDto}>());
+export const removeTask = createAction('[Task Management Component] Remove Task', props<{ id: number }>());
+export const updateTask = createAction('[Task Management Component] Update Task', props<{task: TaskDto}>());
+```
+Each action has a purpose and makes changes to the store.

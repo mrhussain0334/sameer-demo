@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-sm">
+    <input [formControl]="textControl" class="form-control" placeholder="Enter Text">
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm">
+    <button [disabled]="loading$ | async" (click)="submit()" class="btn btn-outline-primary">Submit</button>
+  </div>
+</div>
+<div *ngIf="result$ | async" class="row">
+  <div class="col-sm">
+    Result: {{result$ | async}}
+  </div>
+</div>
+<div *ngIf="error$ | async" class="row">
+  <div class="col-sm">
+    Error: {{error$ | async}}
+  </div>
+</div>
+
