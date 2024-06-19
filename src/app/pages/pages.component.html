@@ -1,5 +1,9 @@
 <div>
-  Task Count in Parent: {{(tasks$ | async)?.length}}
+  Task Count in Parent:
+  <div>The Name is : {{name$ | async}}</div>
+  <ng-container *ngFor="let t of tasks$ | async">
+    <div>{{t.name}}</div>
+  </ng-container>
 </div>
 <div class="row">
   <div class="col-auto">

@@ -20,8 +20,28 @@ Lets start with creating a component first called Task Management
 ```
 src/app/pages/task/components/task-management
 ```
+First Create State
+
+```
+export interface TaskDto {
+id: number,
+name: string,
+description: string,
+}
+
+export interface TaskState {
+tasks: TaskDto[],
+}
+
+
+export const initialTaskState: TaskState = {
+tasks: [],
+}
+```
+
 
 After creating a component lets start by creating an Action
+
 
 An Action is used with interacting with the Store
 

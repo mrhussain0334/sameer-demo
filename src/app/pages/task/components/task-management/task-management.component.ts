@@ -1,11 +1,11 @@
-import {Component} from '@angular/core';
-import {Observable} from "rxjs";
+import {Component, OnDestroy} from '@angular/core';
+import {lastValueFrom, Observable, tap} from "rxjs";
 import {TaskDto} from "../../../../states/task/task.reducer";
 import {AppState} from "../../../../states/app.state";
 import {Store} from "@ngrx/store";
-import {selectTasks} from "../../../../states/task/task.selector";
+import {selectName, selectTasks} from "../../../../states/task/task.selector";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {addTask, removeTask, updateTask} from "../../../../states/task/task.action";
+import {addTask, removeTask, updateName, updateTask} from "../../../../states/task/task.action";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({
@@ -28,12 +28,18 @@ export class TaskManagementComponent {
     description: this.descriptionControl,
   })
   tasks$: Observable<TaskDto[]>;
+  name$: Observable<string>;
   selectedId = 0;
 
   constructor(private store: Store<AppState>) {
     this.tasks$ = this.store.select(selectTasks);
+    this.name$ = this.store.select(selectName);
+    this.nameControl.valueChanges.subscribe(p => {
+      this.store.dispatch(updateName({
+        name: p
+      }));
+    })
   }
-
   addTasks() {
     if (this.formGroup.valid) {
       this.store.dispatch(addTask({

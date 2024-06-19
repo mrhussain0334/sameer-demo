@@ -3,5 +3,5 @@ import {GrokAiState} from "./grokai/grokai.reducer";
 
 export interface AppState {
   task: TaskState,
-  grokAi: GrokAiState
+  grokAi: GrokAiState,
 }
