@@ -8,15 +8,21 @@ import {provideStoreDevtools} from "@ngrx/store-devtools";
 import {grokAiReducer} from "./states/grokai/grokai.reducer";
 import {provideEffects} from "@ngrx/effects";
 import {GrokaiEffect} from "./states/grokai/grokai.effect";
+import {MapEffect} from "./states/map/map.effect";
+import {mapReducer} from "./states/map/map.reducer";
+import {provideHttpClient} from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(),
     provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes),
     provideStore(),
     provideState({name: 'task', reducer: taskReducer}),
     provideState({name: 'grokAi', reducer: grokAiReducer}),
+    provideState({name: 'map', reducer: mapReducer}),
     provideEffects(GrokaiEffect),
+    provideEffects(MapEffect),
     provideStoreDevtools({
       maxAge: 25, // Retains last 25 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode

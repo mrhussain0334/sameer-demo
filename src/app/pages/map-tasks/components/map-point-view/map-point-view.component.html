@@ -1,0 +1,39 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm">
+      Point List (Click to view them)
+    </div>
+  </div>
+  <div *ngFor="let row of points" class="row">
+    <div class="col-sm">
+      <div (click)="_onRowSelect(row)" class="card" style="cursor: pointer">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm">
+              Text
+            </div>
+            <div class="col-sm">
+              {{row.text}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm">
+              Lat
+            </div>
+            <div class="col-sm">
+              {{row.lat}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm">
+              Lng
+            </div>
+            <div class="col-sm">
+              {{row.lng}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

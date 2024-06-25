@@ -22,6 +22,11 @@ const routes: Routes = [{
       pathMatch: 'full'
     },
     {
+      path: 'map-tasks',
+      loadChildren: () => import('./map-tasks/map-tasks-routing.module').then(p => p.MapTasksRoutingModule),
+      pathMatch: 'full'
+    },
+    {
       path: '',
       redirectTo: 'tasks',
       pathMatch: 'full'

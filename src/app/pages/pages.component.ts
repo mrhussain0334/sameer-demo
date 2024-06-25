@@ -34,4 +34,8 @@ export class PagesComponent implements OnInit {
   goToGrokAi() {
     this.router.navigateByUrl('grok-ai');
   }
+
+  goToMapTasks() {
+    this.router.navigateByUrl('map-tasks');
+  }
 }
